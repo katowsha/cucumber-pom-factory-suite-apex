@@ -25,8 +25,8 @@ public class SeleniumDriver {
     private static SeleniumDriver seleniumDriver;
     private static WebDriver driver;
     private static WebDriverWait waitDriver;
-    private static Wait<WebDriver> wditDriverFluent;
-    private final static int TIMEOUT = 30;
+    private static Wait<WebDriver> waitDriverFluent;
+    private final static int TIMEOUT = 60;
     private final static int PAGE_LOAD_TIMEOUT = 120;
 
     private SeleniumDriver(){
@@ -45,9 +45,9 @@ public class SeleniumDriver {
         driver.manage().window().maximize();
 
         waitDriver = new WebDriverWait(driver, TIMEOUT);
-        wditDriverFluent = new FluentWait<>(SeleniumDriver.getDriver())
-                .withTimeout(10, TimeUnit.SECONDS)
-                .pollingEvery(3,TimeUnit.SECONDS)
+        waitDriverFluent = new FluentWait<>(SeleniumDriver.getDriver())
+                .withTimeout(30, TimeUnit.SECONDS)
+                .pollingEvery(5,TimeUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
 
         driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
@@ -62,7 +62,7 @@ public class SeleniumDriver {
         return waitDriver;
     }
 
-    public static Wait<WebDriver> getFluentWait() {return wditDriverFluent;}
+    public static Wait<WebDriver> getFluentWait() {return waitDriverFluent;}
 
     public static WebDriver getDriver(){
         return driver;
