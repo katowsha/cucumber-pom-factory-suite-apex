@@ -36,7 +36,7 @@ public class SeleniumDriver {
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("download.default_directory",downloadFilePath);
         ChromeOptions options = new ChromeOptions();
-
+        options.addArguments("--disable-dev-shm-usage");
         //driver = new ChromeDriver(options);
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
